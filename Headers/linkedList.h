@@ -18,10 +18,17 @@ typedef struct _movesList {
   moveCell * tail;
 } movesList;
 
+typedef struct _location {
+  int row, col;
+} Location;
+
 void makeEmptyList(movesList *lst);
 moveCell * createCell(char row, char col);
 void printList(movesList *lst);
 void freeList(movesList *lst);
 void insert(movesList * lst, char row, char col);
+void deleteNode(movesList * lst, moveCell * p);
+int display(movesList *moves_list, boardPos start, char board[N][M]);
+void printBoard(char board[N][M]);
 
 #endif

@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define N 2
+#define N 3
 #define M 2
 
 typedef char boardPos[2];
@@ -26,6 +26,7 @@ typedef struct _boardPosArray {
   unsigned int size;
   boardPos *positions;
 } boardPosArray;
+
 
 boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]);
 

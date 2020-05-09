@@ -20,6 +20,27 @@ void insert(movesList * lst, char row, char col)
   lst->tail = newNode;
 } 
 
+void deleteNode(movesList * lst, moveCell * p) {
+  if (!lst->head)
+    return;
+  else if (!p->prev) {
+    if (lst->head->next) 
+      lst->tail = p->next;
+
+    lst->head = p->next;
+    lst->head->prev = NULL;
+    free(p);
+  } else if (!p->next) {
+    lst->tail = p->prev;
+    p->prev->next = NULL;
+    free(p);
+  } else {
+    p->prev->next = p->next;
+    p->next->prev = p->prev;
+    free(p);
+  }
+}
+
 void makeEmptyList(movesList *lst)
 {
   lst->head = NULL;

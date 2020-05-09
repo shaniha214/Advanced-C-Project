@@ -2,15 +2,6 @@
 #include "./Headers/boards.h"
 #include "./Headers/linkedList.h"
 
-
-void printBoard(char board[N][M]) {
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) 
-			printf("[%c]", board[i][j]);
-		printf("\n");
-	}
-}
-
 void printMoves(movesArray moves[N][M]) {
 	Move curMove;
 	for (int i = 0; i < N; i++) {
@@ -34,12 +25,21 @@ int main() {
 
 	movesList * lst;
 	makeEmptyList(lst);
-	insert(lst, 2, 3);
+	insert(lst, -1, 1);
+	insert(lst, 0, 1);
+	insert(lst, 1, 3);
+	insert(lst, -2, 2);
+	insert(lst, 6, -1);
+	insert(lst, 0, 1);
+	insert(lst, 2, -2);
+
 	printList(lst);
 
-	// for (int i = 0; i < N; i++)
-	// 	for (int j = 0; j < M; j++)
-	// 		scanf("%c", &board[i][j]);
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < M; j++)
+			scanf("%c", &board[i][j]);
+
+	display(lst, "A1", board);
 
 	// for (i = 0; i < M; i++) {
 	// 	for (j = 0; j < N; j++) {
