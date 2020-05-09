@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define N 3
+#define N 2
 #define M 2
 
 typedef char boardPos[2];

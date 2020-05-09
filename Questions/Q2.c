@@ -1,7 +1,6 @@
 #include "../Headers/linkedList.h"
 
 int display(movesList *moves_list, boardPos start, char board[N][M]) {
-  
 	moveCell *p = moves_list->head;
   moveCell *temp;
   Location location = {start[0] - 'A', start[1] - '0' - 1};
@@ -9,10 +8,11 @@ int display(movesList *moves_list, boardPos start, char board[N][M]) {
 	int deletedNodes = 0, n = 1; 
 
 	board[location.row][location.col] = '#';
- 
+
   while (p) {
-    locationCheck.row = p->move.rows - location.row;
+    locationCheck.row = location.row - p->move.rows;
     locationCheck.col = p->move.cols + location.col; 
+    printf("location: (%d, %d)\n", locationCheck.row, locationCheck.col);
 
     if (
       (locationCheck.row) < 0 ||
@@ -29,6 +29,7 @@ int display(movesList *moves_list, boardPos start, char board[N][M]) {
       location = locationCheck;
       board[location.row][location.col] = '0' + n;
       n++;
+      p = p->next;
     }
   } 
   printBoard(board);

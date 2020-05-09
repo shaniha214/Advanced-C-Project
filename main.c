@@ -23,23 +23,20 @@ int main() {
 	char board[N][M];
 	movesArray moves[N][M];
 
-	movesList * lst;
-	makeEmptyList(lst);
-	insert(lst, -1, 1);
-	insert(lst, 0, 1);
-	insert(lst, 1, 3);
-	insert(lst, -2, 2);
-	insert(lst, 6, -1);
-	insert(lst, 0, 1);
-	insert(lst, 2, -2);
+	movesList lst;
+	makeEmptyList(&lst);
+	insert(&lst, 0, 1);
+	insert(&lst, 6, 0);
+	insert(&lst, -1, 0);
+	insert(&lst, 0, -1);
 
-	printList(lst);
+	printList(&lst);
 
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < M; j++)
 			scanf("%c", &board[i][j]);
 
-	display(lst, "A1", board);
+	display(&lst, "A1", board);
 
 	// for (i = 0; i < M; i++) {
 	// 	for (j = 0; j < N; j++) {

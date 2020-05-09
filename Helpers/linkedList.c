@@ -1,9 +1,10 @@
 #include "../Headers/linkedList.h"
 
 void printList(movesList *lst) {
-  while (lst->head) {
-    printf("(%d, %d)\n", lst->head->move.rows, lst->head->move.cols);
-    lst->head = lst->head->next; 
+  moveCell * p = lst->head;
+  while (p) {
+    printf("(%d, %d)\n", p->move.rows, p->move.cols);
+    p = p->next; 
   } 
 }
 
@@ -15,7 +16,7 @@ void insert(movesList * lst, char row, char col)
 		lst->head = newNode; 
     lst->tail = newNode;
     return;
-  }
+  } 
   lst->tail->next = newNode;
   lst->tail = newNode;
 } 
