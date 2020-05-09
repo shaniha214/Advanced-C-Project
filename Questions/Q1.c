@@ -1,4 +1,4 @@
-#include "./Headers/boards.h"
+#include "../Headers/boards.h"
 
 boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]) {
 	boardPosArray ** res_array = (boardPosArray**)malloc(sizeof(boardPosArray*) * N);

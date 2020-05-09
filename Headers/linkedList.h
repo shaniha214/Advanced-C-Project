@@ -22,5 +22,6 @@ void makeEmptyList(movesList *lst);
 moveCell * createCell(char row, char col);
 void printList(movesList *lst);
 void freeList(movesList *lst);
+void insert(movesList * lst, char row, char col);
 
 #endif
