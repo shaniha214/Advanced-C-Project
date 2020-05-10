@@ -28,6 +28,6 @@ typedef struct _boardPosArray {
 } boardPosArray;
 
 
-boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]);
+boardPosArray ** validMoves(movesArray ** moves, char ** board);
 
 #endif

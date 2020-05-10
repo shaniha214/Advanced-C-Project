@@ -12,7 +12,6 @@ int display(movesList *moves_list, boardPos start, char board[N][M]) {
   while (p) {
     locationCheck.row = location.row - p->move.rows;
     locationCheck.col = p->move.cols + location.col; 
-    printf("location: (%d, %d)\n", locationCheck.row, locationCheck.col);
 
     if (
       (locationCheck.row) < 0 ||
