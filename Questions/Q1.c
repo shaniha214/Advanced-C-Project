@@ -1,6 +1,8 @@
 #include "../Headers/boards.h"
+#include "../Headers/linkedList.h"
 
-boardPosArray ** validMoves(movesArray **moves, char** board) {
+// TODO: moves[N][M] ==> ** moves
+boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]) {
 	boardPosArray ** res_array = (boardPosArray**)malloc(sizeof(boardPosArray*) * N);
 
 	for (int i = 0; i < N; i++)
@@ -13,11 +15,13 @@ boardPosArray ** validMoves(movesArray **moves, char** board) {
 	int i, j, l;
 	int index = 0;
 	char c;
+	// TODO: delete this
+	boardPosArray curPos;
 
 	for (i = 0; i < N; i++) {
 		for (j = 0; j < M; j++) {
 			size = moves[i][j].size;
-			res_array[i][j].positions= (boardPos*)malloc(sizeof(boardPos)*size);
+			res_array[i][j].positions = (boardPos*)malloc(sizeof(boardPos)*size);
 			for (l = 0; l < size; l++) {
 				rows = moves[i][j].moves[l].rows;
 				cols = moves[i][j].moves[l].cols;
@@ -25,23 +29,26 @@ boardPosArray ** validMoves(movesArray **moves, char** board) {
 				if (
 					(i - rows) >= 0 && (i - rows) < N && 
 					(j + cols) < M && (j + cols) >= 0 && 
-					(board['A' - (i + abs(rows))][j + abs(cols)] != '*')
+					(board[i - rows][j + cols] != '*')
 				) {
-					res_array[i][j].positions[index][0] = 'A' - (i + abs(rows));
-					res_array[i][j].positions[index][1] = j + abs(cols);
+					res_array[i][j].positions[index][0] = 'A' + (i - rows);
+					res_array[i][j].positions[index][1] = j + 1 + cols;
 					index++;
 				}
 			}
+			res_array[i][j].size = index;
+			index = 0;
 		}
-		res_array[i][j].size = index;
 	}
-	
+
+	// TODO: delete this
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
-			printf("Move with size %d \n", res_array[i][j].size);
-			for (int k = 0; k < res_array[i][j].size; k++) {
+			curPos = res_array[i][j];
+			printf("Move with size %d \n", curPos.size);
+			for (int k = 0; k < curPos.size; k++) {
 
-				printf("(%d, %d) ", res_array[i][j].positions[k][0], res_array[i][j].positions[k][1]);
+				printf("(%c%d) ", curPos.positions[k][0], curPos.positions[k][1]);
 			}
 			printf("\n");
 		}
