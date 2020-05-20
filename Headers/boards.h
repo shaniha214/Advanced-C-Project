@@ -27,7 +27,8 @@ typedef struct _boardPosArray {
   boardPos *positions;
 } boardPosArray;
 
-// TODO: moves[N][M] ==> ** moves
+// TODO: moves[N][M] ==> **moves
 boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]);
+void swap(Move * m1, Move * m2);
 
 #endif
