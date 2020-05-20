@@ -7,7 +7,11 @@ int display(movesList *moves_list, boardPos start, char board[N][M]) {
   Location locationCheck;
 	int deletedNodes = 0, n = 1; 
 
-	board[location.row][location.col] = '#';
+  char ** boardCopy = (char**)malloc(sizeof(char*) * N);
+	for (int i = 0; i < N; i++)	boardCopy[i] = (char*)malloc(sizeof(char) * M);
+  initalizeBoard(boardCopy);
+
+	boardCopy[location.row][location.col] = '#';
 
   while (p) {
     locationCheck.row = location.row - p->move.rows;
@@ -18,7 +22,8 @@ int display(movesList *moves_list, boardPos start, char board[N][M]) {
       (locationCheck.row) >= N || 
       (locationCheck.col) >= M ||
       (locationCheck.col) < 0 ||
-      board[locationCheck.row][locationCheck.col] != ' '
+      board[locationCheck.row][locationCheck.col] == '*' ||
+      boardCopy[locationCheck.row][locationCheck.col] != ' '
     ) {
       temp = p;
       deleteNode(moves_list, p);
@@ -26,16 +31,22 @@ int display(movesList *moves_list, boardPos start, char board[N][M]) {
       deletedNodes++;
     } else {
       location = locationCheck;
-      board[location.row][location.col] = '0' + n;
+      boardCopy[location.row][location.col] = '0' + n;
       n++;
       p = p->next;
     }
   } 
-  printBoard(board);
+  printBoard(boardCopy);
 	return deletedNodes;
 }
 
-void printBoard(char board[N][M]) {
+void initalizeBoard(char ** board) {
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < M; j++) 
+			board[i][j] = ' ';
+}
+
+void printBoard(char ** board) {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) 
 			printf("[%c]", board[i][j]);
