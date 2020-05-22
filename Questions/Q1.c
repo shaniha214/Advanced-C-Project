@@ -31,9 +31,6 @@ boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]) {
 	// TODO: delete this
 	boardPosArray curPos;
 
-	printMoves(moves);
-	printf("\n\n\n");
-
 	for (i = 0; i < N; i++) {
 		for (j = 0; j < M; j++) {
 			size = moves[i][j].size;
@@ -43,9 +40,9 @@ boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]) {
 				rows = moves[i][j].moves[read].rows;
 				cols = moves[i][j].moves[read].cols;
 				if (
-					(i - rows) >= 0 && (i - rows) < N && 
+					(i + rows) >= 0 && (i + rows) < N && 
 					(j + cols) < M && (j + cols) >= 0 && 
-					(board[i - rows][j + cols] != '*')
+					(board[i + rows][j + cols] != '*')
 				) {
 					swap(moveArray + read, moveArray + write);
 					write++;
@@ -70,7 +67,7 @@ boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]) {
 			for (l = 0; l < size; l++) {
 				rows = moves[i][j].moves[l].rows;
 				cols = moves[i][j].moves[l].cols;
-				res_array[i][j].positions[index][0] = 'A' + (i - rows);
+				res_array[i][j].positions[index][0] = 'A' + (i + rows);
 				res_array[i][j].positions[index][1] = j + 1 + cols;
 				index++;
 			}
@@ -80,17 +77,17 @@ boardPosArray ** validMoves(movesArray moves[N][M], char board[N][M]) {
 	}
 
 	// TODO: delete this
-	// for (int i = 0; i < N; i++) {
-	// 	for (int j = 0; j < M; j++) {
-	// 		curPos = res_array[i][j];
-	// 		printf("Move with size %d \n", curPos.size);
-	// 		for (int k = 0; k < curPos.size; k++) {
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			curPos = res_array[i][j];
+			printf("Move with size %d \n", curPos.size);
+			for (int k = 0; k < curPos.size; k++) {
 
-	// 			printf("(%c%d) ", curPos.positions[k][0], curPos.positions[k][1]);
-	// 		}
-	// 		printf("\n");
-	// 	}
-	// }
+				printf("(%c%d) ", curPos.positions[k][0], curPos.positions[k][1]);
+			}
+			printf("\n");
+		}
+	}
 	return res_array;
 }
 
